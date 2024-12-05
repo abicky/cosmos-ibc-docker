@@ -3,7 +3,7 @@ package app
 import (
 	appparams "github.com/b9lab/checkers/app/params"
 	"github.com/cosmos/cosmos-sdk/std"
-	"github.com/ignite-hq/cli/ignite/pkg/cosmoscmd"
+	"github.com/ignite/cli/ignite/pkg/cosmoscmd"
 )
 
 // MakeTestEncodingConfig creates an EncodingConfig for testing. This function

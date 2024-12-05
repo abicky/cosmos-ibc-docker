@@ -6,7 +6,7 @@
 # expose api endpoints
 
 # Use Golang Docker Image
-FROM golang:1.18
+FROM golang:1.23
 
 # Set working dir
 WORKDIR /home/checkers
@@ -15,10 +15,14 @@ WORKDIR /home/checkers
 RUN apt-get install curl git
 
 # Install ignite
-RUN curl -L https://get.ignite.com/cli@v0.22.1! | bash
+RUN git clone --depth 1 --branch fix-ambiguous-import https://github.com/abicky/cli.git \
+  && cd cli \
+  && make install \
+  && cd .. \
+  && rm -rf cli
 
 # Clone checkers game repository(branch wager-denomination)
-RUN git clone -b wager-denomination https://github.com/cosmos/b9-checkers-academy-draft.git /home/checkers
+RUN git clone -b fix-ambiguous-import https://github.com/abicky/b9-checkers-academy-draft.git /home/checkers
 
 # Copy Config.yml
 ARG configyml
